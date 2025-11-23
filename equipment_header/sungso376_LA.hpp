@@ -50,6 +50,7 @@ auto NN_coordinate(vector<T1>& a, vector<vector<T2>>& basis)->vector<decltype(a[
     vector<T1> before;
     before.push_back(1);
     before.insert(before.end(),a.begin(),a.end());
+    
     for(int i=0;i<basis.size();i++){
         ElementType tmp;
         tmp=1*basis[i][0];
