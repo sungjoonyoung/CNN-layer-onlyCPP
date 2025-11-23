@@ -20,7 +20,43 @@ auto inner_product(vector<T1>& a, vector<T2>& b) -> decltype(a[0] * b[0]){
     return norm;
 }
 
+//coordinate
+template <typename T1, typename T2>
+auto coordinate(vector<T1>& a, vector<vector<T2>>& basis)->vector<decltype(a[0]*basis[0][0])>{ // 디클레어 이거 맞나? 몰라
 
+    using ResultType = vector<decltype(a[0]*basis[0][0])>;
+    ResultType answer;
+    using ElementType = decltype(a[0]*basis[0][0]);
+    for(int i=0;i<basis.size();i++){
+        ElementType tmp;
+        tmp=inner_product(a,basis[i]);
+        answer.push_back(tmp);
+    }
+    return answer;
+}
+
+/*
+NN-coordinate just vector&basis
+dont need to add the 1 <- 이게 그 일부러 넣는 그 1그게 뭐였지 여하튼 그거
+*/
+template <typename T1, typename T2>
+auto NN_coordinate(vector<T1>& a, vector<vector<T2>>& basis)->vector<decltype(a[0]*basis[0][0])>{ // 디클레어 이거 맞나? 몰라
+
+    using ResultType = vector<decltype(a[0]*basis[0][0])>;
+    ResultType answer;
+    using ElementType = decltype(a[0]*basis[0][0]);
+
+    vector<T1> before;
+    before.push_back(1);
+    before.insert(before.end(),a.begin(),a.end());
+    for(int i=0;i<basis.size();i++){
+        ElementType tmp;
+        tmp=1*basis[i][0];
+        tmp=inner_product(before,basis[i]);
+        answer.push_back(tmp);
+    }
+    return answer;
+}
 
 
 // // 또는 C++11 이후의 트레일링 반환(Trailing return) 구문을 사용하여
