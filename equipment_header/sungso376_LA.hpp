@@ -38,6 +38,7 @@ auto coordinate(vector<T1>& a, vector<vector<T2>>& basis)->vector<decltype(a[0]*
 /*
 NN-coordinate just vector&basis
 dont need to add the 1 <- 이게 그 일부러 넣는 그 1그게 뭐였지 여하튼 그거
+여하튼 자동으로 1을 앞에 넣어서 계산해 줍니다.
 */
 template <typename T1, typename T2>
 auto NN_coordinate(vector<T1>& a, vector<vector<T2>>& basis)->vector<decltype(a[0]*basis[0][0])>{ // 디클레어 이거 맞나? 몰라
