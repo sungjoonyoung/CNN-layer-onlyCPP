@@ -4,7 +4,8 @@
 #include"..\..\000.equipment_header\sungso376_STR.hpp"
 using namespace std;
 int main(void){
-    string file = "_file_chck.csv";
+    // string file = "_file_chck.csv";
+    string file = "contain/tmp.csv";
 
     ifstream fin(file);
     if (fin) {
