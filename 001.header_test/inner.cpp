@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-#include"..\equipment_header\sungso376_LA.hpp"
+#include"..\000.equipment_header\sungso376_LA.hpp"
 // #include"/equipment/sungso376_LA"
 using namespace std;
 int main(void){

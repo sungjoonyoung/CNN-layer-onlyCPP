@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-#include"..\equipment_header\sungso376_LA.hpp"
+#include"..\000.equipment_header\sungso376_LA.hpp"
 // #include"/equipment/sungso376_LA"
 using namespace std;
 int main(void){
@@ -9,11 +9,11 @@ int main(void){
 
     vector<double> v1(3,2); //(2,2,2)
     vector<vector<double>> v2={
-        {1,1,1},
-        {1,0,1}
+        {2,1,0,1},
+        {2,1,0,4},
     };
     
-    for(auto c:coordinate(v1,v2))cout<<c<<"\n";
+    for(auto c:NN_coordinate(v1,v2))cout<<c<<"\n";
 
     
 }
