@@ -3,7 +3,7 @@
 
 only using vector, iostream lib
 
-- [homemade header](https://github.com/sungjoonyoung/CNN-layer-onlycpp/tree/main/equipment_header)
+- [homemade header](https://github.com/sungjoonyoung/CNN-layer-onlycpp/tree/main/000.equipment_header)
   - Linear Algebra
     - inner product
     - coordinate
@@ -17,7 +17,7 @@ only using vector, iostream lib
     - vector{xx,xxx,x} -> "xx,xxx,x"
   
 
-- (ing) [XO-judge](https://github.com/sungjoonyoung/CNN-layer-onlycpp/tree/main/XO_judge)
+- (ing) [XO-judge](https://github.com/sungjoonyoung/CNN-layer-onlycpp/tree/main/100.NN_XO_judge)
   - dataset
     - X
     - O
