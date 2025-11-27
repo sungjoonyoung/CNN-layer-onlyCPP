@@ -108,7 +108,7 @@ BMP loadBMP(const string& filename){
 }
 
 int main(){
-    auto bmp = loadBMP("X/real1png.BMP");
+    auto bmp = loadBMP("X/real2png.BMP");
 
     cout<<"W = "<<bmp.width<<"\n";
     cout<<"H = "<<bmp.height<<"\n";
@@ -125,10 +125,16 @@ int main(){
     for(int y=0;y<bmp.height;y++){
         for(int x=0;x<bmp.width;x++){
             int idx = (y*bmp.width + x) * (bmp.bpp/8);
-            unsigned char B = bmp.pixels[idx+0];
-            unsigned char G = bmp.pixels[idx+1];
-            unsigned char R = bmp.pixels[idx+2];
-            fout<<R*G*B<<" ";
+            // unsigned int B = bmp.pixels[idx+0];
+            // unsigned int G = bmp.pixels[idx+1];
+            // unsigned int R = bmp.pixels[idx+2];
+            double B = bmp.pixels[idx+0];
+            double G = bmp.pixels[idx+1];
+            double R = bmp.pixels[idx+2];
+            // fout<<(int)R<<" "; 255
+            // cout<<R<<G<<B;
+            // fout<<(R+G+B)/(3*255)<<" ";
+            fout<<(int)((R+G+B)/(3*255)*100)<<" ";
             // fout<<"("<<(int)R<<","<<(int)G<<","<<(int)B<<") ";
         }
         fout<<"\n";
