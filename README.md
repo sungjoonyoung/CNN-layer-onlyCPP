@@ -8,9 +8,22 @@ only using vector, iostream lib
     - inner product
     - coordinate
     - auto coordinate for NN (insert Bias Unit automatically)
-<!--
-      - Activation function
--->
+    - exponential
+  - Activation function
+    - sigmoid
+    - ReLU
+  - STR
+    - string "x,xx,x" -> vector{x,xx,x}
+    - vector{xx,xxx,x} -> "xx,xxx,x"
   
 
 - (ing) [XO-judge](https://github.com/sungjoonyoung/CNN-layer-onlycpp/tree/main/XO_judge)
+  - dataset
+    - X
+    - O
+    - BMP -> txt
+  - layer
+    - for Node Vectors
+    - for Convolution Matrix
+  - main
+  - traning main
