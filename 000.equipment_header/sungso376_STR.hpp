@@ -8,6 +8,7 @@ vector{xx,xxx,x} -> "xx,xxx,x"
 
 #include<iostream>
 #include<vector>
+#include<fstream>
 using namespace std;
 
 //파싱
@@ -53,6 +54,57 @@ auto progress_bar(T1 N, T2 progress){
     str+=to_string(N);
     str+=")";
     return str;
+}
+
+/*
+ifsteam 형태로 scv 를 받아서
+파싱해서
+레이어 노드들을 파싱
+*/
+auto read_node(ifstream &fin,int N,int demension){
+    vector<vector<double>> layer;
+    for(int i=0;i<N;i++){
+        string str;fin>>str;
+        auto tmp=string_pasing(str);
+        layer.push_back(vector<double>());
+        for(auto s:tmp)layer[i].push_back(stod(s));
+    }
+    return layer;
+}
+
+/*
+ifsteam 형태로 scv 를 받아서
+파싱해서
+필터를 파싱
+*/
+auto read_filter_2D(ifstream &fin,int N,int M, int D=1){
+    vector<vector<double>> filter;
+    for(int i=0;i<N;i++){
+        string str;fin>>str;
+        auto tmp=string_pasing(str);
+        filter.push_back(vector<double>());
+        for(auto s:tmp)filter[i].push_back(stod(s));
+    }
+    return filter;
+}
+
+/*
+ifsteam 형태로 scv 를 받아서
+파싱해서
+필터를 파싱
+*/
+auto read_filter_3D(ifstream &fin,int N,int M, int D=1){
+    vector<vector<vector<double>>> filter;
+    for(int d=0;d<D;d++){
+        filter.push_back(vector<vector<double>>());
+        for(int i=0;i<N;i++){
+            string str;fin>>str;
+            auto tmp=string_pasing(str);
+            filter[d].push_back(vector<double>());
+            for(auto s:tmp)filter[d][i].push_back(stod(s));
+        }
+    }
+    return filter;
 }
 
 // //파싱
