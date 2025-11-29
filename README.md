@@ -17,6 +17,8 @@ only using vector, iostream lib
   - String (for data pasing)
     - string "x,xx,x" -> vector{x,xx,x}
     - vector{xx,xxx,x} -> "xx,xxx,x"
+    - node vector reader
+    - filter reader (3d, 2d)
   
 
 - (ing) [XO-judge](https://github.com/sungjoonyoung/CNN-layer-onlycpp/tree/main/100.NN_XO_judge)
