@@ -5,7 +5,7 @@ string "x,xx,x" -> vector{x,xx,x}
 or
 vector{xx,xxx,x} -> "xx,xxx,x"
 */
-
+#pragma once
 #include<iostream>
 #include<vector>
 #include<fstream>

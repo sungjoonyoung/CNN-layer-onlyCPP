@@ -5,7 +5,7 @@ inner product
 coordinate
 exponential
 */
-
+#pragma once
 #include<iostream>
 #include<vector>
 using namespace std;

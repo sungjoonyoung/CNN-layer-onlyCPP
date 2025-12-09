@@ -1,50 +1,29 @@
 #include<iostream>
 #include<fstream>
 #include<vector>
-#include"sungso376_AF.hpp"
-#include"sungso376_STR.hpp"
-#include<sungso376_CNN.hpp>
-#include"sungso376_LA.hpp"
 #include<sungso376_image.hpp>
 using namespace std;
 auto conv_function(string image){
     ifstream fin(image, ios::binary);
     // ifstream fin(image);
     vector<vector<vector<double>>> con_data=image_func(fin);
+    cout<<"A";
     for(int i=0;i<20;i++){
         for(int j=0;j<20;j++){
             cout<<con_data[i][j].front()<<" ";
         }
         cout<<"\n";
     }
-    vector<vector<vector<double>>> con_tmp=con_data;
-
-
-    // 1
-    vector<string> conv_file={
-        "_RGB",
-    };
-
-
-    // 2
-    conv_file={
-        "y=x.csv",
-    };
-    vector<vector<double>> out;
-    /*
-    conv->NN
-    */
-   return out;
 }
 int main(void){
     for(int i=0;i<1;i++){
         /*
         convolution
         */
-        string image="dataset/X/X("+to_string(i)+").bmp";
-        vector<vector<double>> con_data=conv_function(image);
+        string image="image_func.bmp";
+        conv_function(image);
         
-        cout<<image<<"\n";
+
         /*
         NN
         */

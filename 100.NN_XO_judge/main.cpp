@@ -1,4 +1,4 @@
-#include<iosteam>
+#include<iostream>
 #include<fstream>
 #include<vector>
 #include"sungso376_AF.hpp"

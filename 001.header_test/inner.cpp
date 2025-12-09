@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-#include"sungso376_LA.hpp"
+#include"sungso376_CNN.hpp"
 // #include"/equipment/sungso376_LA"
 using namespace std;
 int main(void){

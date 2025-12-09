@@ -1,7 +1,7 @@
 /*
 header for activate function
 */
-
+#pragma once
 #include<iostream>
 #include<vector>
 #include<sungso376_LA.hpp>
