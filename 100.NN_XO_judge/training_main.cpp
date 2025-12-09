@@ -8,28 +8,67 @@
 #include<sungso376_image.hpp>
 using namespace std;
 auto conv_function(string image){
-    ifstream fin(image, ios::binary);
-    // ifstream fin(image);
-    vector<vector<vector<double>>> con_data=image_func(fin);
+    vector<vector<vector<double>>> con_data;
+    vector<vector<vector<double>>> con_tmp;
+    vector<vector<double>>filter_data;
+    {
+        ifstream fin(image, ios::binary);
+        con_data=image_func(fin);
+    }
     for(int i=0;i<20;i++){
         for(int j=0;j<20;j++){
             cout<<con_data[i][j].front()<<" ";
         }
         cout<<"\n";
     }
-    vector<vector<vector<double>>> con_tmp=con_data;
+
+    
+    /*
+    ## 1 ##
+    */
+    con_tmp.clear();
+    //conv
+    {
+        ifstream fin("layer/y=x.csv");
+        filter_data=read_filter_2D(fin,3,3);
+        con_tmp.push_back(convolution_2D(con_data[0],filter_data));
+    }
+    {
+        ifstream fin("layer/y=x.csv");
+        filter_data=read_filter_2D(fin,3,3);
+        con_tmp.push_back(convolution_2D(con_data[0],filter_data));
+    }
+    {
+        ifstream fin("layer/y=x.csv");
+        filter_data=read_filter_2D(fin,3,3);
+        con_tmp.push_back(convolution_2D(con_data[0],filter_data));
+    }
+    //activation function
+
+    //paste
+    con_data=con_tmp;
 
 
-    // 1
-    vector<string> conv_file={
-        "_RGB",
-    };
+    
+    // for(int i=0;i<20;i++){
+    //     for(int j=0;j<20;j++){
+    //         cout<<con_data[i][j].front()<<" ";
+    //     }
+    //     cout<<"\n";
+    // }
+
+    /*
+    ## 2 ##
+    */
 
 
-    // 2
-    conv_file={
-        "y=x.csv",
-    };
+
+    /*
+    ## 2 ## pooling
+    */
+
+
+
     vector<vector<double>> out;
     /*
     conv->NN
