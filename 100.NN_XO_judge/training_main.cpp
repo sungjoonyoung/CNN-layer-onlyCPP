@@ -212,7 +212,7 @@ vector<vector<vector<double>>> weight_data;
 vector<vector<vector<double>>> weight_tmp;
 vector<vector<double>> coordinate_data;
 vector<vector<double>> derivative_data;
-double learning_rate=0.9;
+double learning_rate=0.1;
 int main(void){
     cout<<"\n";
     int Onum,Xnum;
