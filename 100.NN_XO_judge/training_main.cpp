@@ -7,7 +7,14 @@
 #include"sungso376_LA.hpp"
 #include<sungso376_image.hpp>
 using namespace std;
-void print_3D(vector<vector<vector<double>>> X){
+void print_1D(vector<double> &X){
+    cout<<"\n";
+    for(int j=0;j<X.size();j++){
+        cout<<X[j]<<" ";
+    }
+    cout<<"\n--------------------\n";
+}
+void print_3D(vector<vector<vector<double>>> &X){
     for(int i=0;i<X.size();i++){
         cout<<"["<<i<<"]-----------\n";
         for(int j=0;j<X[i].size();j++){
@@ -20,7 +27,7 @@ void print_3D(vector<vector<vector<double>>> X){
     }
     cout<<"--------------------\n";
 }
-void print_2D(vector<vector<double>> X){
+void print_2D(vector<vector<double>> &X){
     cout<<"\n";
     for(int j=0;j<X.size();j++){
         for(int k=0;k<X[j].size();k++){
@@ -225,7 +232,6 @@ int main(void){
         coordinate_data[1].resize(24); //numbers of nodes
         coordinate_data[2].resize(24);
         coordinate_data[3].resize(2);
-        coordinate_data[3]={1,0};
 
         for(int i=0;i<1;i++){
             for(int j=0;j<coordinate_data[i].size();j++)
@@ -239,15 +245,17 @@ int main(void){
         
         //read csv -> weight_data
         for(int i=1;i<weight_data.size();i++){
-            string w_csv ="weight_layer/weight ("+to_string(op)+").csv";
+            string w_csv ="weight_layer/weight ("+to_string(i)+").csv";
             ifstream fin(w_csv);
             weight_data[i]=read_filter_2D(fin,coordinate_data[i].size(),coordinate_data[i-1].size()+1);
         }
         weight_tmp=weight_data;
-        
-        //NN
 
-        
+        //NN
+        for(int i=1;i<weight_data.size();i++){
+            coordinate_data[i]=NN_coordinate(coordinate_data[i-1],weight_data[i]);
+        }
+
         //backpropagation -> weight_tmp
 
         //scv<=weight_tmp
