@@ -14,18 +14,19 @@ using namespace std;
 //파싱
 // template <typename T1>
 // string "x,xx,x" -> vector{x,xx,x}
-auto string_pasing(string &a) {
+auto string_pasing(string &a, int max_size=2'000'000'000) {
     vector<string> data;
     string in="";
     for(int i=0;i<a.size();i++){
         if(a[i]==' ')continue;
         if(a[i]==','){
+            if(data.size()==max_size)break;
             data.push_back(in);
             in="";
         }
         else in+=a[i];
     }
-    if(in!="")data.push_back(in);
+    if(in!="" and data.size()!=max_size)data.push_back(in);
     return data;
 }
 
@@ -81,7 +82,7 @@ auto read_filter_2D(ifstream &fin,int N,int M, int D=1){
     vector<vector<double>> filter;
     for(int i=0;i<N;i++){
         string str;fin>>str;
-        auto tmp=string_pasing(str);
+        auto tmp=string_pasing(str,M);
         filter.push_back(vector<double>());
         for(auto s:tmp)filter[i].push_back(stod(s));
     }
