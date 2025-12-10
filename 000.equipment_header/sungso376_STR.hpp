@@ -61,6 +61,22 @@ auto progress_bar(T1 progress, T2 N){
     return str;
 }
 
+template <typename T1, typename T2>
+auto percentage_bar(T1 progress, T2 N){
+    string str="[";
+    for(int i=1;i<=10;i++){
+        if(i*10<(double)progress/N*100)str+='*';
+        else str+='.';
+    }
+    str+=']';
+    str+='(';
+    str+=to_string(progress/N*100);
+    str+='%';
+    // str+=to_string(N);
+    str+=")";
+    return str;
+}
+
 /*
 ifsteam 형태로 scv 를 받아서
 파싱해서
