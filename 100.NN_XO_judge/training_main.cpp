@@ -42,18 +42,18 @@ auto conv_function(string image){
     //conv
     con_tmp.clear();
     {
-        ifstream fin("layer/y=x0.csv");
+        ifstream fin("filter_layer/y=x0.csv");
         filter_data=read_filter_2D(fin,3,3);
         con_tmp.push_back(convolution_2D(con_data[0],filter_data));
     }
     {
-        ifstream fin("layer/y=-x0.csv");
+        ifstream fin("filter_layer/y=-x0.csv");
         filter_data=read_filter_2D(fin,3,3);
         con_tmp.push_back(convolution_2D(con_data[0],filter_data));
         // print_2D(filter_data);
     }
     {
-        ifstream fin("layer/Xshape0.csv");
+        ifstream fin("filter_layer/Xshape0.csv");
         filter_data=read_filter_2D(fin,3,3);
         con_tmp.push_back(convolution_2D(con_data[0],filter_data));
         // print_3D(con_tmp);
@@ -76,17 +76,17 @@ auto conv_function(string image){
     //conv
     con_tmp.clear();
     {
-        ifstream fin("layer/y=x.csv");
+        ifstream fin("filter_layer/y=x.csv");
         filter_data=read_filter_2D(fin,3,3);
         con_tmp.push_back(convolution_2D(con_data[0],filter_data));
     }
     {
-        ifstream fin("layer/y=-x.csv");
+        ifstream fin("filter_layer/y=-x.csv");
         filter_data=read_filter_2D(fin,3,3);
         con_tmp.push_back(convolution_2D(con_data[1],filter_data));
     }
     {
-        ifstream fin("layer/Xshape.csv");
+        ifstream fin("filter_layer/Xshape.csv");
         filter_data=read_filter_2D(fin,3,3);
         con_tmp.push_back(convolution_2D(con_data[2],filter_data));
         // print_3D(con_tmp);
@@ -129,17 +129,17 @@ auto conv_function(string image){
     //conv
     con_tmp.clear();
     {
-        ifstream fin("layer/y=x.csv");
+        ifstream fin("filter_layer/y=x.csv");
         filter_data=read_filter_2D(fin,3,3);
         con_tmp.push_back(convolution_2D(con_data[0],filter_data));
     }
     {
-        ifstream fin("layer/y=-x.csv");
+        ifstream fin("filter_layer/y=-x.csv");
         filter_data=read_filter_2D(fin,3,3);
         con_tmp.push_back(convolution_2D(con_data[1],filter_data));
     }
     {
-        ifstream fin("layer/Xshape.csv");
+        ifstream fin("filter_layer/Xshape.csv");
         filter_data=read_filter_2D(fin,3,3);
         con_tmp.push_back(convolution_2D(con_data[2],filter_data));
         // print_3D(con_tmp);
@@ -195,24 +195,56 @@ auto conv_function(string image){
 
 
 
-
+vector<vector<vector<double>>> weight_data;
+vector<vector<vector<double>>> weight_tmp;
+vector<vector<double>> coordinate_data;
 int main(void){
     cout<<"\n";
-    for(int op=1;op<2;op++){
+    /*
+    X
+    */
+    for(int op=1;op<=3;op++){
+        weight_data.clear();
+        weight_tmp.clear();
+        coordinate_data.clear();
+        /*
+        convolution
+        */
+        string image="dataset/X/X ("+to_string(op)+").bmp";
+        coordinate_data.push_back(conv_function(image));            
+        
+        for(int i=0;i<1;i++){
+            for(int j=0;j<coordinate_data[i].size();j++)
+                cout<<(int)(coordinate_data[i][j]*10000)<<" ";
+            cout<<"\n";
+        }
+        /*
+        NN
+        */
+        weight_data.push_back(vector<vector<double>>()); // corasponding index with coordinate_data
+        //read csv -> weight_data
+        
+        //NN
+
+        //backpropagation -> weight_tmp
+
+        //scv<=weight_tmp
+
+    }
+
+
+    /*
+    O
+    */
+    for(int op=1;op<=3;op++){
         vector<vector<double>> coordinate_data;
         /*
         convolution
         */
-        {
-            string image="dataset/X/X ("+to_string(op)+").bmp";
-            coordinate_data.push_back(conv_function(image));            
-        }
-        {
-            string image="dataset/O/O ("+to_string(op)+").bmp";
-            coordinate_data.push_back(conv_function(image));
-        }
+        string image="dataset/O/O ("+to_string(op)+").bmp";
+        coordinate_data.push_back(conv_function(image));
         
-        for(int i=0;i<coordinate_data.size();i++){
+        for(int i=0;i<1;i++){
             for(int j=0;j<coordinate_data[i].size();j++)
                 cout<<(int)(coordinate_data[i][j]*10000)<<" ";
             cout<<"\n";
