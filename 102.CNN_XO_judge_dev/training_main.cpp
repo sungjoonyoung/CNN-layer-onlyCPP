@@ -43,7 +43,7 @@ void print_2D(vector<vector<double>> &X){
 }
 
 int layer_number=4;
-int hidden_node_number[]={20,20,23,4};
+int hidden_node_number[]={24,24,24};
 int output_number=2;
 double learning_rate=0.01;
 
@@ -59,8 +59,8 @@ int main(void){
     cout<<"\n";
     Xnum=720;
     Onum=720;
-    for(int i=0;;i++){
-        cout<<i<<"\n";
+    for(int i=0;i<1'000;i++){
+        cout<<"iteration : "<<i<<"\n";
         int Xind=1;
         int Oind=1;
         while(Xind<=Xnum and Oind<=Xnum){
