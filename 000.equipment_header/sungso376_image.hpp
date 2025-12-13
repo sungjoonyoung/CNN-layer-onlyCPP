@@ -2,7 +2,6 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <cstdint>
 typedef unsigned short uint16_t;
 typedef unsigned int uint32_t;
 typedef unsigned char uint8_t;
@@ -31,6 +30,12 @@ struct BMP {
 
 
 BMP loadBMP(ifstream& fin){
+    // for(int i=0;i<10;i++){
+    //     string str;
+    //     fin>>str;
+    //     getline(fin,str);
+    //     cout<<str;
+    // }
     // ifstream fin(filename, ios::binary);
     // if(!fin) throw runtime_error("File open failed");
 
