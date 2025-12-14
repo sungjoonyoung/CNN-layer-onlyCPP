@@ -94,7 +94,12 @@ int main(void){
         //NN
         for(int i=1;i<weight_data.size();i++){
             coordinate_data[i]=NN_coordinate(coordinate_data[i-1],weight_data[i]);
-            for(int j=0;j<coordinate_data[i].size();j++)coordinate_data[i][j]=sigmoid(coordinate_data[i][j]);
+            if(i==1){ // 히든은 렐루
+                for(int j=0;j<coordinate_data[i].size();j++)coordinate_data[i][j]=ReLU(coordinate_data[i][j]);
+            }
+            else{ // 나머지는 시그모이드
+                for(int j=0;j<coordinate_data[i].size();j++)coordinate_data[i][j]=sigmoid(coordinate_data[i][j]);
+            }
         }
 
 

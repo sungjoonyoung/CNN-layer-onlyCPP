@@ -20,12 +20,35 @@ auto ReLU(T1 x)->decltype(x){
     return max(x,(T1)0);
 }
 
-
-
+template <typename T1>
+auto sotfmax(vector<T1> &x){
+    vector<T1> sftmax_vector(x.size());
+    long double mother=0;
+    for(auto c:x)mother+=exp(c);
+    for(int i=0;i<sftmax_vector.size();i++)
+        sftmax_vector[i]=exp(x[i])/mother;
+    return sftmax_vector;
+}
 
 /*
 derivative
 */
+
+//sigmod
+template <typename T1>
+auto derivative_sigmoid(T1 x){
+    double tmp=sigmoid(x);
+    tmp*=(1-tmp);
+    return tmp;
+}
+
+template <typename T1>
+auto derivative_ReLU(T1 x)->decltype(x){
+    return ((x > 0) ?( 1.0) : (0.0));
+}
+
+
+
 
 
 

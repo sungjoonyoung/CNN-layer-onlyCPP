@@ -45,9 +45,9 @@ void print_2D(vector<vector<double>> &X){
 int layer_number=3;//레이어가 몇 개? x = 1+hidden+1
 int hidden_node_number[]={200};
 int output_number=10; //아웃풋의 노드가 몇 개?
-double learning_rate=0.005;
-double seed_out=0.0004;
-double seed_hid=0.00001;
+double learning_rate=0.01;
+double seed_out=0.005;
+double seed_hid=0.01;
 int iteration_train=1'000'000'000;
 
 vector<vector<vector<double>>> weight_data;
@@ -105,6 +105,7 @@ void func(int op,int num){
         coordinate_data[i+1].resize(hidden_node_number[i]);
     }
     coordinate_data[layer_number-1].resize(output_number);
+    // print_1D(coordinate_data[0]);
     // cout<<"numbers of first layer"<<coordinate_data[0].size()<<"\n";
 
     // for(int i=0;i<1;i++){
@@ -124,13 +125,12 @@ void func(int op,int num){
         weight_data[i]=read_filter_2D(fin,coordinate_data[i].size(),coordinate_data[i-1].size()+1);
         for(int j=0;j<coordinate_data[i].size();j++){
             if(i==weight_data.size()-1){
-                while(weight_data[i][j].size()!=coordinate_data[i-1].size()+1)weight_data[i][j].push_back(seed_out+seed_out/4*(rand()%10));
-            }
-            else if(i==weight_data.size()-2){
-                while(weight_data[i][j].size()!=coordinate_data[i-1].size()+1)weight_data[i][j].push_back(seed_hid*(rand()%10));
+                while(weight_data[i][j].size()!=coordinate_data[i-1].size()+1)
+                    weight_data[i][j].push_back(seed_out*((rand()%2001 - 1000) / 1000.0));
             }
             else{
-                while(weight_data[i][j].size()!=coordinate_data[i-1].size()+1)weight_data[i][j].push_back(0.00000001*(rand()%10));
+                while(weight_data[i][j].size()!=coordinate_data[i-1].size()+1)
+                    weight_data[i][j].push_back(seed_hid*((rand()%2001 - 1000) / 1000.0));
             }
         }
     }
@@ -138,11 +138,17 @@ void func(int op,int num){
     //NN
     for(int i=1;i<weight_data.size();i++){
         coordinate_data[i]=NN_coordinate(coordinate_data[i-1],weight_data[i]);
-        for(int j=0;j<coordinate_data[i].size();j++)coordinate_data[i][j]=sigmoid(coordinate_data[i][j]);
+        if(i==1){ // 히든은 렐루
+            for(int j=0;j<coordinate_data[i].size();j++)coordinate_data[i][j]=ReLU(coordinate_data[i][j]);
+        }
+        else{ // 나머지는 시그모이드
+            for(int j=0;j<coordinate_data[i].size();j++)coordinate_data[i][j]=sigmoid(coordinate_data[i][j]);
+        }
     }
-    // print_1D(coordinate_data.back());
-
     
+    //softmax
+    vector<double> sftmax_vector=sotfmax(coordinate_data.back());
+    // print_1D(sftmax_vector);
 
     /*
     backpropagation
@@ -150,15 +156,20 @@ void func(int op,int num){
     for(int i=0;i<derivative_data.size();i++)derivative_data[i].resize(coordinate_data[i].size());
     //output layer's derivative sum
     for(int i=0;i<correct_output.size();i++){
-        derivative_data.back()[i]=correct_output[i]-coordinate_data.back()[i];
+        derivative_data.back()[i]=correct_output[i]-sftmax_vector[i];
     }
     //derivative sum
     for(int i=derivative_data.size()-1;i>=0;i--){
         // 현재 도착했을 때는 h(1-h) 를 해주고 -> derivative sum 완성!
         for(int j=0;j<derivative_data[i].size();j++){
             double x=coordinate_data[i][j];
-            // derivative_data[i][j]*=x*(1-x);
-            if (i!=derivative_data.size()-1)derivative_data[i][j]*=x*(1-x); // 이거 스킵했는데, 그 이유 정확하게 알아야 댐
+            if(i==1){ // 히든은 렐루
+                derivative_data[i][j]*=derivative_ReLU(x);
+            }
+            else{ // 출력은 스킵 continue문은 나중에 해 보자고.
+                continue;
+                // derivative_data[i][j]*=derivative_sigmoid(x);
+            }
         }
         // 그리고 뒤로 쏴주자
         if(i==0)break;

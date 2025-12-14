@@ -177,7 +177,7 @@ auto conv_function(string image){
     for(int i=0;i<con_data.size();i++){
         for(int j=0;j<con_data[i].size();j++){
             for(int k=0;k<con_data[i][j].size();k++)
-                out.push_back(con_data[i][j][k]);
+                out.push_back(con_data[i][j][k]*2-1);
         }
     }
     return out;
