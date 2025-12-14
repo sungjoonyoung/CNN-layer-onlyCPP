@@ -20,6 +20,10 @@ auto ReLU(T1 x)->decltype(x){
     return max(x,(T1)0);
 }
 
+/*
+sotfmax
+vector -> vector
+*/
 template <typename T1>
 auto sotfmax(vector<T1> &x){
     vector<T1> sftmax_vector(x.size());
@@ -34,7 +38,7 @@ auto sotfmax(vector<T1> &x){
 derivative
 */
 
-//sigmod
+//derivative sigmod
 template <typename T1>
 auto derivative_sigmoid(T1 x){
     double tmp=sigmoid(x);
@@ -42,6 +46,7 @@ auto derivative_sigmoid(T1 x){
     return tmp;
 }
 
+//derivative ReLU
 template <typename T1>
 auto derivative_ReLU(T1 x)->decltype(x){
     return ((x > 0) ?( 1.0) : (0.0));
