@@ -3,7 +3,7 @@
 
 only using vector, iofstream lib
 
-> This project was implemented **without any external libraries**  
+> This project was implemented without any external libraries  
 > to fully understand the internal mechanism of CNN.
 
 
